@@ -14,9 +14,9 @@
 #include <SPI.h>
 #include <Arduino_JSON.h>
 
-//infomration for the Arduino board to connect with the UoB-IoT. Make sure to change "PASSWORD HERE" to your unique password!!
+//information for the Arduino board to connect with the UoB-IoT. Make sure to change "PASSWORD HERE" to your unique password!!
 const char* ssid = "UoB-IoT";
-const char* pass = "viq453uf";
+const char* pass = "PASSWORD HERE";
 
 //URLs to the locations used
 const char* locationBath = "https://api.openweathermap.org/data/2.5/weather?lat=51.37932&lon=-2.32716&appid=b4a34f9df227f68bce84bf8ce44daef1";
@@ -30,7 +30,7 @@ unsigned long debounceDelay = 150;
 int clickCount = 0;
 
 
-//Setup code with all setup function such as connecting to the WiFi and starting the Serial Monitor
+//Setup code with all setup functions such as connecting to the WiFi and starting the Serial Monitor
 void setup() {
   //Setting the PinModes to be Outputs and the Button pin to be an input pin
   pinMode(8, OUTPUT);
@@ -73,14 +73,14 @@ void getJSON(const char* url) {
 
   //Double check that the board is connected to WiFi
   if (WiFi.status() == WL_CONNECTED) {
-    //Gathering the infomration from the JSON files using the HTTPClient livrary
+    //Gathering the information from the JSON files using the HTTPClient library
     HTTPClient http;
     //changes based on the switch state
     http.begin(url);
     int httpCode = http.GET();
     
     if (httpCode > 0) {
-      //Saves the JSON file as a string that can be used to gather infomration from
+      //Saves the JSON file as a string that can be used to gather information from
       String payload = http.getString();
       JSONVar myObject = JSON.parse(payload);
       //Save only the relevant information that we can use to compare against
